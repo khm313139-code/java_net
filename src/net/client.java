@@ -47,6 +47,7 @@ public class client {
 			
 				System.out.println("클라이언트 서버 접속 시도!!");
 				sk= new Socket(ip,port);
+				
 				OutputStream os = sk.getOutputStream();
 				
 				System.out.println("다음 메뉴를 선택하여 통신을 사용한다. [1. 채팅, 2. 파일전송]: ");
@@ -65,10 +66,10 @@ public class client {
 					break;
 
 				
+					
 				case "2":
 					System.out.println("전송할 파일 경로를 입력하시오: ");
 					String path = sc.nextLine();
-					
 					File file = new File(path);
 					InputStream fis = new FileInputStream(file);
 					BufferedInputStream bis = new BufferedInputStream(fis);
