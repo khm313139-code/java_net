@@ -17,17 +17,11 @@ but udp는 양방향 통신을 해버려 패킷을 교환해버려서 속도가 
 
 */
 
-
-/*
-receive() => 수신 - inputstream 수신 - tcp에서
-send() => 송신 - outputstream 송신 - tcp에서
-*/
-
-public class java_net8 {
+public class java_net88 {
 
 	public static void main(String[] args) {
 		String ip = "172.30.1.10"; //tcp ip
-		int port = 10000;
+		int port = 10001;
 		try {
 			//서버에서 사용하는 ip(tcp ip임) 가져옴
 			InetAddress ia = InetAddress.getByName(ip);
@@ -45,7 +39,7 @@ public class java_net8 {
 			
 			InetAddress client_ip = dp.getAddress(); //상대방 접속 ip 정보
 			int client_port = dp.getPort();
-			System.out.println("서버1: " + client_ip); //클라이언트 접속 ip - 클라이언트 정보를 서버가 가지고 있다.
+			System.out.println("서버2:"+client_ip); //클라이언트 접속 ip - 클라이언트 정보를 서버가 가지고 있다.
 			System.out.println(client_port); //클라이언트 접속 port
 			
 			

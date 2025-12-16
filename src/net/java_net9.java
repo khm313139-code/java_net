@@ -1,19 +1,24 @@
 package net;
 
+
+//새로운 채널 팠음 하나의 서버에 새로운 포트번호 (udp)
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class java_net9 {
-	//UDP 연결방식 (Server) => socket 형태가 없음.
+	//UDP 연결방식 (client) => socket 형태가 없음.
 	//client
 	public static void main(String[] args) {
 		String ip = "172.30.1.72"; //상대방 서버 ip주소
 		
-		int port = 10000;
+		int port = 10003; //서버 포트
+		//int myport = 10005; //자신이 접속하는 udp 포트
+		int myport = (int)Math.ceil(Math.random()*1000) + 9000;
+		
 		try {
 			InetAddress ia = InetAddress.getByName(ip); //서버 아이피 정보를 가져옴(udp 포트)
-			DatagramSocket ds = new DatagramSocket(port);//이거는 서버의 소켓임(내꺼임 내 서버) 내 포트임
+			DatagramSocket ds = new DatagramSocket(myport);//이거는 서버의 소켓임(내꺼임 내 서버) 내 포트임
 
 			while(true) { //클라 쪽에 무한루프 걸어버림
 				byte b[] = new byte[1024];
@@ -29,6 +34,7 @@ public class java_net9 {
 			
 		}catch (Exception e) {
 			System.out.println("서버 접속에 실패 하였습니다. ");
+			System.out.println(e.getMessage());
 		}
 		
 	}
