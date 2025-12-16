@@ -60,9 +60,7 @@ public class client {
 				case "1":
 					System.out.println("전송할 메세지를 입력하세요: ");
 					String message = sc.nextLine();
-					
 					os.write(message.getBytes());
-					
 					os.flush();
 					break;
 
