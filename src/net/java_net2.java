@@ -26,7 +26,7 @@ public class java_net2 {
 			ServerSocket ss = new ServerSocket();
 			
 			//InetSocketAddress: 해당 port를 이용하여 통신을 오픈하는 형태
-			InetSocketAddress ia = new InetSocketAddress("172.30.1.10",10000); //10000번 포트를 열겠다. 내 아이피(내 pc임)
+			InetSocketAddress ia = new InetSocketAddress("192.168.45.171",10000); //10000번 포트를 열겠다. 내 아이피(내 pc임)
 			
 			//bind = add(바인딩한다.) / append => 정적(자식 생성 후 호출), 동적(부모에게 접근 형태)으로 생성
 			ss.bind(ia);
