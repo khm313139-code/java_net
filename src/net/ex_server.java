@@ -54,8 +54,7 @@ class make_server {
 						+ dp.getAddress().getHostAddress()
 						+ " : " + dp.getPort());
 
-				// (선택) 클라이언트가 보낸 메시지도 확인
-				System.out.println("클라이언트 메시지 : " + clientMsg);
+				
 			}
 
 		} catch (Exception e) {
