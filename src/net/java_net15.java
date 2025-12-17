@@ -43,10 +43,12 @@ public class java_net15 {
 			
 			//object 형태로 변환
 			ObjectOutputStream oos = new ObjectOutputStream(os);
+			
+			//writeobject, readobject는 objectstream에만 해당
 			oos.writeObject(obj); //arraylist 배열 값을 => objectstream 변환(1차)
 			oos.flush();
 			
-			return os.toByteArray(); //바이트 배열로 반환
+			return os.toByteArray(); //바이트 배열로 반환해서 사용하는 형태
 			
 		} catch (Exception e) {
 			System.out.println("해당 배열 클래스 오류 발생!!");

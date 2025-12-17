@@ -52,12 +52,17 @@ class choice_box{
 	}
 	private void udp() {
 		try {
-			byte [] buffer = new byte[1];
+			byte [] buffer = new byte[1024]; //=> 저장용량
+			//원시배열의 단점은 new byte[1] 크기를 지정을 해버리면 변경이 어렵다.
+			//switch case에서 1024로 지정하면 숫자 하나가 1byte 차지하고 나머지는 1023바이트는 공백으로 나오는 것임
 			this.dp = new DatagramPacket(buffer, buffer.length);
+			
+			
 			this.ds.receive(this.dp);
+			int word_ea = this.dp.getLength(); //client에서 byte에 대한 길이 값을 정하지 않은 상황에서 전송된 byte 길이를 확인하기 위한 사항
 			
-			
-			this.msg = new String(this.dp.getData());
+			//아래가 해결법 공백을 없애는
+			this.msg = new String(this.dp.getData(),0,word_ea);
 			System.out.println(this.msg);
 
 			String no = this.msg.replace("\"", "");
