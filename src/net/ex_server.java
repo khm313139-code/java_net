@@ -52,8 +52,12 @@ class make_server {
 				String clientMsg = new String(dp.getData(), 0, dp.getLength());
 				System.out.println("접속한 클라이언트 정보 : "
 						+ dp.getAddress().getHostAddress()
-						+ " : " + dp.getPort());
+						+ "\n"+"포트 번호: " + dp.getPort());
 
+				
+				String msg = new String(dp.getData(), 0, dp.getLength());
+				System.out.println("메세지 출력: "+msg);
+				
 				
 			}
 
