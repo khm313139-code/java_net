@@ -54,35 +54,38 @@ class client_receive1 extends Thread{
 		}
 	}
 	
+	
+	//서버에서 전송한 파일을 받는 thread
 	@Override
 	public void run() {
 		try {
-			System.out.println("[수신 대기]");
-			
-			byte [] buffer = new byte[2048];
-			dp = new DatagramPacket(buffer, buffer.length);
-			
-			FileOutputStream fos = new FileOutputStream("D:\\java_net\\download\\new.jpg");
-			
-			
-			while(true) {
-				ds.receive(dp);
+				System.out.println("[수신 대기]");
+				//server 패킷과 동일한 byte
+				byte [] buffer = new byte[2048];
+				dp = new DatagramPacket(buffer, buffer.length);
+				FileOutputStream fos = new FileOutputStream("D:\\java_net\\download\\new.jpg");
 				
-				String check = new String(dp.getData(),0,dp.getLength());
-				if(check.equals("전송 종료")) {
-					System.out.println("[다운로드 종료]");
-					break;
+				
+				
+				//반복문 돌면서 파일을 입력받고 write 시킴 저장시키는거지
+				while(true) {
+					ds.receive(dp);
+					String check = new String(dp.getData(),0,dp.getLength());
+					if(check.equals("전송 종료")) {
+						System.out.println("[다운로드 종료]");
+						break;
+					}
+					fos.write(dp.getData(),0,dp.getLength()); //자신의 pc에 파일 저장
 				}
-				fos.write(dp.getData(),0,dp.getLength());
-			}
-			fos.close();
-			ds.close();
+				
+				fos.close(); //파일 저장 스트림 종료
+				ds.close();
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 }
 
 
@@ -108,7 +111,7 @@ class client_send1 extends Thread{
 			this.ds = new DatagramSocket(this.myport);
 			
 		} catch (Exception e) {
-		System.out.println(e);
+			System.out.println(e);
 		
 		}
 	}
@@ -121,39 +124,32 @@ class client_send1 extends Thread{
 			br = new BufferedReader(isr);
 			String path = br.readLine();
 			
-			
+		
 			FileInputStream fis = new FileInputStream(path);
 			BufferedInputStream bis = new BufferedInputStream(fis);
-			
-			
 			byte[] buffer = new byte[2048];
-			int size = 0;
 			
+			
+			int size = 0;
 			while((size = bis.read(buffer)) != -1) {
 				dp = new DatagramPacket(buffer, size, ia, port);
 				ds.send(dp);
 			}
 			
+			
 			byte[] end = "전송 종료".getBytes();
 			dp = new DatagramPacket(end, end.length, ia, port);
 			ds.send(dp);
 			
+			
 			bis.close();
 			ds.close();
-					
-			
-			
 			
 		} catch (Exception e) {
 			System.out.println("클라이언트 메세지 전송 오류");
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
-	
-	
 }
 
 
