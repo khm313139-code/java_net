@@ -1,8 +1,5 @@
 package example;
 
-import java.net.Inet6Address;
-import java.net.InetAddress;
-
 /*
 자바의 전체적인 파트
 
@@ -29,11 +26,11 @@ import java.net.InetAddress;
 => inetaddress => ipv4 / ipv6 => port
 
 */
-public class ex1 {
-	
-	public static void main(String[] args) {
-		try {
-		String ip6 = "fe80:9980:5413:8ee2:347e%11";
+
+/*
+//ipv6 확인법
+try { 
+		String ip6 = "fe80::9980:5413:8ee2:347e%11";
 		InetAddress addr = Inet6Address.getByName(ip6);
 		if (addr.getClass() == Inet6Address.class) {
 			System.out.println("해당 IP는 IPv6 입니다.");
@@ -42,6 +39,13 @@ public class ex1 {
 		}catch (Exception e) {
 			
 		}
+
+*/
+
+public class ex1 {
+	
+	public static void main(String[] args) {
+		
 	}
 
 }
